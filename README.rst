@@ -3,7 +3,7 @@ This is the repo for my training project FAKEGRAM
 
 It's a fake instagram built using reactjs and django::
 
-The backend is a django-restframework API
+The backend is a django-restframework API::
 ---------------------------------------------
 	$ pip install pipenv
 	$ pipenv shell
