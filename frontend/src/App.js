@@ -3,7 +3,7 @@ import {Route, Switch, BrowserRouter} from 'react-router-dom';
 
 import Posts from './components/Posts';
 import TopNavBar from './components/TopNavBar';
-import UserProfile from './components/UserProfile';
+import UserProfile from './components/profile_components/UserProfile';
 
 
 class App extends Component {
