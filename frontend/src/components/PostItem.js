@@ -16,6 +16,9 @@ class PostItem extends Component {
     getUrl = (type,image) => {
         return image.substring(image.indexOf(type))
     }
+    getUserUrl = (username) =>{
+        return "users/"+username;
+    }
 
     async getUserClick(username) {
         console.log("user is ", username)
@@ -30,16 +33,18 @@ class PostItem extends Component {
         return (
             <div style={{paddingBottom:'9%'}}>
             <ListGroupItem  style={this.props.getPostPadding}> 
-                <a style={{marginBottom:'10px',marginTop:'0.7em', paddingLeft:'0.5em'}}  onClick={() => this.getUserClick(user.username)} >
-                    <Avatar name="Insta" size="45" round={true}  src={this.getUrl("/users/",user.profile_picture)}/>
+                <a style={{marginBottom:'10px',marginTop:'0.7em', paddingLeft:'0.5em'}}  
+                onClick={() => this.getUserClick(user.username)} >
+                    <Avatar name="Insta" size="45" round={true}  
+                    src={this.getUrl("/users/",user.profile_picture)}/>
                     <b> 
                     {'  '} 
-                    {user.username}</b>
+                    <a href={this.getUserUrl(user.username)}>{user.username}</a></b>
                 </a>
                 <Col style={{width:'100%', padding:'0px'}}>
                 <Media src={this.getUrl("/posts/",image)} style={{width:'100%',padding:"0px"}}/>
                 </Col>
-        <p> <b>{user.username}</b> {' '} {caption}</p>
+        <p> <b><a href={this.getUserUrl(user.username)}>{user.username}</a></b> {' '} {caption}</p>
                 
             </ListGroupItem>
             </div>
