@@ -4,6 +4,7 @@ import '../styles/icons.css';
 
 
 class TopNavBar extends React.Component {
+    
     navItemStyling = () => {
         return {
             paddingLeft:'2em', 
@@ -12,11 +13,21 @@ class TopNavBar extends React.Component {
             fontWeight:'bold'
         }
     }
+    navBarStyling = () => {
+        return {
+        backgroundColor: 'white', 
+        position: 'fixed', 
+        width:'100%',
+        top: "0",
+        overflow:'hidden',
+        zIndex:'1',
+    }
+    }
 
 render(){
     return( 
-    <div style={{backgroundColor: 'white', position: 'fixed'}}>
-    <Navbar light expand="md" >
+    <div >
+    <Navbar light expand="md" style={this.navBarStyling()}>
       <NavbarBrand href="/" style={{flexGrow:'3'}}>
       <i className="fa fa-camera" style={{fontSize:'38px', color:'gold'}}>FakeGram</i></NavbarBrand>
         <Nav className="ml-auto" navbar style={{flexGrow: '1'}}>

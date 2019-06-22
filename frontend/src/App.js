@@ -4,6 +4,8 @@ import {Route, Switch, BrowserRouter} from 'react-router-dom';
 import Posts from './components/Posts';
 import TopNavBar from './components/TopNavBar';
 import UserProfile from './components/profile_components/UserProfile';
+import PostUpload from './components/profile_components/PostUpload';
+import UserNotifications from './components/profile_components/UserNotifications';
 
 
 class App extends Component {
@@ -31,10 +33,12 @@ class App extends Component {
       <React.Fragment >
       <TopNavBar/>
 
-      <BrowserRouter style={{backgroundColor:'#f8f9fa'}}>
+      <BrowserRouter style={{backgroundColor:'#f8f9fa', paddingTop: '10%'}}>
                 <Switch>
                     <Route exact path="/" component={Posts} />
                     <Route  path="/:username" component={UserProfile} />
+                    <Route  path="/:notifications" component={UserNotifications} />
+                    <Route  path="/:upload" component={PostUpload} />
                 </Switch>
             </BrowserRouter>
       </React.Fragment>

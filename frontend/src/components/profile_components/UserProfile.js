@@ -65,7 +65,7 @@ class UserProfile extends Component {
         const {username, profile_picture, first_name, last_name, bio} = this.state.user_profile;
         return (
             <div>
-        <Container>
+        <Container style={{paddingTop: '10%', zIndex:'-1'}}>
             <Row>
             <Col  md={{ size: 7, offset: 3 }} sm="12" >
              <a>

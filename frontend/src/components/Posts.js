@@ -32,7 +32,7 @@ class Posts extends Component{
       }
     render(){
         return(
-            <Container>
+            <Container style={{paddingTop: '10%', zIndex:'-1'}}>
             <Row>
             <Col  md={{ size: 7, offset: 1 }} sm="12" style={this.getPostPadding()}>
             {this.state.is_fetching ?
