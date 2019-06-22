@@ -114,12 +114,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = "instagram.User"
 
-CORS_ORIGIN_WHITELIST = (
-    'localhost:3001'
-)
 CORS_ORIGIN_REGEX_WHITELIST = (
     'localhost:3001',
 )
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://localhost:8080',
+]
