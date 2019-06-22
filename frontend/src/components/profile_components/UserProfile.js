@@ -38,7 +38,7 @@ class UserProfile extends Component {
         
     }
     async getUserProfile(username) {
-            let data = await fetchUsername("sewa");
+            let data = await fetchUsername(username);
             this.setState({
                 user_profile: data, 
                 is_fetching_profile: false,

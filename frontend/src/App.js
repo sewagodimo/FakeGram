@@ -36,9 +36,9 @@ class App extends Component {
       <BrowserRouter style={{backgroundColor:'#f8f9fa', paddingTop: '10%'}}>
                 <Switch>
                     <Route exact path="/" component={Posts} />
-                    <Route  path="/:username" component={UserProfile} />
-                    <Route  path="/:notifications" component={UserNotifications} />
-                    <Route  path="/:upload" component={PostUpload} />
+                    <Route  path="/users/:username" component={UserProfile} />
+                    <Route  exact path="/notifications" component={UserNotifications} />
+                    <Route  exact path="/upload" component={PostUpload} />
                 </Switch>
             </BrowserRouter>
       </React.Fragment>
