@@ -26,6 +26,7 @@ class ListProfilePosts extends React.Component{
                 user={post.user}
                 caption={post.caption}
               />
+
         }
         else{
             modal = <p></p>

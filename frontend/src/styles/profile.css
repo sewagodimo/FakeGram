@@ -7,3 +7,10 @@
     flex: 0 0 33%;                       /* don't grow, don't shrink, width */
     /*background-color: #999;*/
   }
+
+
+  .modal_flex{
+    display: flex;
+    background-color: white;
+    padding: 1px;
+  }

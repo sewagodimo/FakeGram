@@ -10,8 +10,7 @@ class PostItem extends Component {
         this.state = {is_userview: false,
                       user_profile: [],
                     };
-    
-                }
+    }
 
     getUrl = (type,image) => {
         return image.substring(image.indexOf(type))
