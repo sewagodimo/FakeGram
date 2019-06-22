@@ -1,13 +1,14 @@
 import React from 'react';
 import {Navbar, NavbarBrand, Nav, NavItem} from 'reactstrap';
+import '../styles/icons.css';
 
 
 class TopNavBar extends React.Component {
     navItemStyling = () => {
         return {
-            paddingLeft:'1em', 
-            fontSize:'30px', 
-            color:'grey', 
+            paddingLeft:'2em', 
+            fontSize:'20px', 
+            color:'gold', 
             fontWeight:'bold'
         }
     }
@@ -16,14 +17,15 @@ render(){
     return( 
     <div style={{ paddingBottom:'4%', backgroundColor:'white'}}>
     <Navbar color="light" light expand="md" >
-      <NavbarBrand href="/" style={{flexGrow:'3'}}>FakeGram</NavbarBrand>
+      <NavbarBrand href="/" style={{flexGrow:'3'}}>
+      <i className="fa fa-camera" style={{fontSize:'38px', color:'gold'}}>FakeGram</i></NavbarBrand>
         <Nav className="ml-auto" navbar style={{flexGrow: '1'}}>
             <NavItem >
-            <a href="/users/" style={this.navItemStyling()}>👤</a> {'  '}
+            <a href="/users/" className= "Profile" style={this.navItemStyling()}></a> {'  '}
 
-            <a href="notification" style={this.navItemStyling()}>♡</a>  {'  '}
+            <a href="/notifications/" className= "Like" style={this.navItemStyling()}></a>  {'  '}
 
-            <a href="explore" style={this.navItemStyling()}>&#x26BD;</a>
+            <a href="/upload/" className= "Upload" style={this.navItemStyling()}></a>
           </NavItem>
           </Nav>
           </Navbar>
