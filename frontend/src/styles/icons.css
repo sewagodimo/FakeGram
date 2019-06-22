@@ -1,0 +1,31 @@
+.Profile {
+    background-image: url(./icons/profile.svg);
+    background-repeat: no-repeat;
+    alt: 👤;
+    color: gold;
+  }
+
+  .Notifications {
+    background-image: url(./icons/notification.svg);
+    background-repeat: no-repeat;
+    color: gold;
+  }
+  .Logo {
+    background-image: url(./icons/camera.svg);
+    background-repeat: no-repeat;
+
+    color: gold;
+  }
+
+  .Like {
+    background-image: url(./icons/heart.svg);
+    background-repeat: no-repeat;
+    alt: ♡;
+    color: gold;
+  }
+
+  .Upload {
+    background-image: url(./icons/upload.svg);
+    background-repeat: no-repeat;
+    color: gold;
+  }
