@@ -11,8 +11,6 @@ class App extends Component {
     super(props);
     this.state = {
       posts: [],
-      post: {},
-      users: [],
       user: {},
       current_post_id:0,
       is_uploading:true,
@@ -27,11 +25,6 @@ class App extends Component {
   componentDidMount(){
     //check if a user is logged in
   }
-getTopNavBar = () => {
-  return {
-      paddingBottom: '15px',
-  }
-}
 
   render() {
     return (

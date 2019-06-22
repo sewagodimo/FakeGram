@@ -15,8 +15,8 @@ class TopNavBar extends React.Component {
 
 render(){
     return( 
-    <div style={{ paddingBottom:'4%', backgroundColor:'white'}}>
-    <Navbar color="light" light expand="md" >
+    <div style={{ paddingBottom:'2%', backgroundColor: 'white'}}>
+    <Navbar light expand="md" >
       <NavbarBrand href="/" style={{flexGrow:'3'}}>
       <i className="fa fa-camera" style={{fontSize:'38px', color:'gold'}}>FakeGram</i></NavbarBrand>
         <Nav className="ml-auto" navbar style={{flexGrow: '1'}}>
