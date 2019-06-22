@@ -1,0 +1,64 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# Default Django instance directory for development.
+
+# dependencies
+/node_modules
+
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+.eggs/
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+
+# Installer logs
+pip-log.txt
+
+.project
+.pydevproject
+ve/
+/ve/
+logs/*.log
+*.pid
+.vscode/
+
+local.py
+/static/
+frontend/public/*
+screenshots/
+/media/
+db.sqlite3
+db.sqlite4
+docs/_build
+.DS_Store
+.cache/
+.mypy_cache/
+.pytest_cache/
+/htmlcov/
+
+# PyCharm / IntelliJ
+.idea/
+gem_test.db
+
+node_modules/
+db.sqlite3-journal
+*.pyc
