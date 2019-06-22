@@ -6,6 +6,7 @@ It's a fake instagram built using reactjs and django::
 The backend is a django-restframework API::
 ---------------------------------------------
 	$ pip install pipenv
+	
 	$ pipenv shell
 	$ ./manage.py migrate
 	$ ./manage.py createsuperuser
