@@ -23,7 +23,7 @@ render(){
 
             <a href="notification" style={this.navItemStyling()}>♡</a>  {'  '}
 
-            <a href="notification" style={this.navItemStyling()}>🚀</a>
+            <a href="explore" style={this.navItemStyling()}>&#x26BD;</a>
           </NavItem>
           </Nav>
           </Navbar>
