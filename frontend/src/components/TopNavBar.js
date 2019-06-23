@@ -32,12 +32,14 @@ render(){
       <i className="fa fa-camera" style={{fontSize:'38px', color:'gold'}}>FakeGram</i></NavbarBrand>
         <Nav className="ml-auto" navbar style={{flexGrow: '1'}}>
             <NavItem >
-            <a href="/users/" className= "Profile" style={this.navItemStyling()}></a> {'  '}
-
-            <a href="/notifications/" className= "Like" style={this.navItemStyling()}></a>  {'  '}
-
+                {this.props.is_logged_in? 
+                <a href="/">Login</a>:
+              <div>
+            <a href="/users/" className= "Profile" style={this.navItemStyling()}></a> 
+            <a href="/notifications/" className= "Like" style={this.navItemStyling()}></a>
             <a href="/upload/" className= "Upload" style={this.navItemStyling()}></a>
-          </NavItem>
+            </div>  }
+            </NavItem>
           </Nav>
           </Navbar>
           </div>

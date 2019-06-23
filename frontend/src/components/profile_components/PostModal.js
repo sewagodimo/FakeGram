@@ -1,5 +1,5 @@
 import React from 'react';
-import { Media,  Modal, ModalHeader, ListGroupItem, ListGroup} from 'reactstrap';
+import { Media,  Modal, ModalHeader, ListGroup} from 'reactstrap';
 import Avatar from 'react-avatar';
 import '../../styles/profile.css'
 

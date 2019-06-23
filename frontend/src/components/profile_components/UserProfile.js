@@ -46,9 +46,7 @@ class UserProfile extends Component {
             
             if (data.get_posts !==[]){
                 this.getUserPosts(data.get_posts);
-            }
-
-        }
+            }}
 
     async getUserPosts(post_ids){
             // check that the user info loadede

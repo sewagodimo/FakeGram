@@ -28,7 +28,9 @@ class Posts extends Component{
 }
     async getPosts() {
         let data = await fetchPosts();
+        if (data){
         this.setState({posts:data, is_fetching:false});
+        }
       }
     render(){
         return(
@@ -36,8 +38,9 @@ class Posts extends Component{
             <Row>
             <Col  md={{ size: 7, offset: 1 }} sm="12" style={this.getPostPadding()}>
             {this.state.is_fetching ?
-                    "Loading..." :
+                    "AUth issues again..." :
                 <ListGroup>
+
                   <ListPosts posts={this.state.posts} 
                   handlePostClick={(id) => this.handlePostClick(id)} 
                   style={this.getPostPadding()} getPostPadding={this.getPostPadding()}/>

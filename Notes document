@@ -167,3 +167,9 @@ $ npm install react-avatar --save
 # besides React, react-avatar also has prop-types as peer dependency,
 # make sure to install it into your project
 $ npm install prop-types --save
+
+
+
+Doing auth stuff
+-------------------------
+https://medium.com/@dakota.lillie/django-react-jwt-authentication-5015ee00ef9a
