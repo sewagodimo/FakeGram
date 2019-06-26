@@ -19,6 +19,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class UserList(generics.ListCreateAPIView):
+    
 	queryset = models.User.objects.all()
 	serializer_class = serializers.UserSerializer
 
@@ -28,7 +29,7 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 	lookup_field = 'username'
 	serializer_class = serializers.UserSerializer
 
-class UserList(APIView):
+class UsersList(APIView):
     """
     Create a new user. It's called 'UserList' because normally we'd have a get
     method here too, for retrieving a list of all User objects.
@@ -49,6 +50,6 @@ def current_user(request):
     """
     Determine the current user by their token, and return their data
     """
-    
+    print(request)
     serializer = serializers.UserSerializer(request.user)
     return Response(serializer.data)

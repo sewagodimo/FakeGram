@@ -1,23 +1,33 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, AnonymousUser
-from typing import Union
+from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
-class User(AbstractUser):
-    profile_picture = models.ImageField(('users'),
-                                        upload_to='frontend/public/users/%Y/%m/%d',
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(('profiles'),
+                                        upload_to='frontend/public/profiles/%Y/%m/%d',
                                         blank=True)
     bio = models.CharField(blank=True, null=True, max_length=250)
 
     def __str__(self):
-        return self.username
+        return self.user.username
 
     def get_posts(self):
-        return Post.objects.filter(user=self).values_list('id', flat=True)
+        return Post.objects.filter(user=self.user).values_list('id', flat=True)
+    def get_user(self):
+        return [self.user.id, self.user.username, self.user.email, self.user.first_name, self.user.last_name]
 
-#: Helper type for Django request users: either anonymous or signed-in.
-RequestUser = Union[AnonymousUser, User]
+#: Recievers to create, update the profile when the user is created,updated
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
 
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 class Post(models.Model):
     caption = models.CharField(max_length=280)

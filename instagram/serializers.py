@@ -1,14 +1,29 @@
 from . import models
 
 from rest_framework import serializers
+from rest_framework_jwt.settings import api_settings
+from django.contrib.auth.models import User
+
+
+class ProfileUserSerizalier(serializers.ModelSerializer):
+	class Meta:
+    	model = User
+		fields = ('username')
 
 
 class UserSerializer(serializers.ModelSerializer):
 
 	get_posts = serializers.ReadOnlyField()
+	get_user = serializers.ReadOnlyField()
 	class Meta:
-		model = models.User
-		fields = ('id', 'username','profile_picture', 'first_name','last_name','bio', 'get_posts')
+		model = models.Profile
+		fields = ('user','profile_picture', 'bio', 'get_posts')
+	
+	def to_representation(self, instance):
+		data = super().to_representation(instance)
+		print("ANd",data)
+		data['user'] = ProfileUserSerizalier(User.objects.get(pk=data['user'])).data
+		return data
 	
 
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -33,15 +48,16 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 		return instance
 
 	class Meta:
-		model = models.User
+		model = User
 		fields = ('token', 'username', 'password')
 
 
 class PostUserSerializer(serializers.ModelSerializer):
+	get_user = serializers.ReadOnlyField()
 
 	class Meta:
-		model = models.User
-		fields = ('id', 'username','profile_picture')
+		model = models.Profile
+		fields = ('get_user','profile_picture')
 	
 
 
@@ -53,7 +69,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 	def to_representation(self, instance):
 		data = super().to_representation(instance)
-		data['user'] = PostUserSerializer(models.User.objects.get(pk=data['user'])).data
+		data['user'] = PostUserSerializer(User.objects.get(pk=data['user'])).data
 		return data
 
 
