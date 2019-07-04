@@ -41,7 +41,7 @@ getUrl = (type,image) => {
       <ModalHeader toggle={this.toggle} style={{padding:'2px'}}>
                 <div style={{marginBottom:'5px',marginTop:'0.7em', }}>
                     <Avatar name="Insta" size="45" round={true}  
-                    src={this.getUrl("/users/",this.props.user.profile_picture)}/>
+                    src={this.getUserUrl("/profile_pictures/",this.props.user.profile_picture)}/>
                     <b>{'  '} 
                     <NavLink to={this.getUserUrl(this.props.user.username)}>{this.props.user.username}</NavLink>
                     </b>

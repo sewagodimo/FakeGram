@@ -27,6 +27,7 @@ class UserProfile extends Component {
       }
       
       getUrl = (type,image) => {
+          console.log(image)
           if (image){
         return this.state.user_profile.profile_picture.substring(image.indexOf(type))
           }
@@ -69,7 +70,7 @@ class UserProfile extends Component {
             <Row>
             <Col  md={{ size: 7, offset: 3 }} sm="12" >
              <a>
-             <Avatar name="Insta" size="45" round={true}  src={this.getUrl("/users/", profile_picture)}/>
+             <Avatar name="Insta" size="45" round={true}  src={this.getUrl("/profile_pictures/", profile_picture)}/>
             </a>
             <h3> {first_name} {' '} {last_name}</h3>
             <h6><b>@{username}</b></h6>

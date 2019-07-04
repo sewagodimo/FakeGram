@@ -38,11 +38,11 @@ class PostItem extends Component {
                 <a style={{marginBottom:'10px',marginTop:'0.7em', paddingLeft:'0.5em'}}  
                 onClick={() => this.getUserClick(user.username)} >
                     <Avatar name="Insta" size="45" round={true}  
-                    src={this.getUrl("/users/",user.profile_picture)}/>
+                    src={this.getUrl("/profile_pictures/",user.profile_picture)}/>
                     {'  '}<b> <a href={this.getUserUrl(user.username)}>{user.username}</a></b>
                 </a>
                 <Col style={{width:'100%', padding:'0px'}}>
-                <Media src={this.getUrl("/posts/",image)} style={{width:'100%',padding:"0px"}}/>
+                <Media src={this.getUrl("/post_pictures/",image)} style={{width:'100%',padding:"0px"}}/>
                 </Col>
         <p> <b><a href={this.getUserUrl(user.username)}>{user.username}</a></b> {' '} {caption}</p>
                 
