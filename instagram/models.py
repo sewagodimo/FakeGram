@@ -4,8 +4,8 @@ from typing import Union
 
 
 class User(AbstractUser):
-    profile_picture = models.ImageField(('users'),
-                                        upload_to='frontend/public/users/%Y/%m/%d',
+    profile_picture = models.ImageField(('profile_picture'),
+                                        upload_to='frontend/public/profile_pictures/%Y/%m',
                                         blank=True)
     bio = models.CharField(blank=True, null=True, max_length=250)
 
@@ -24,8 +24,8 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(('posts'),
-                              upload_to='frontend/public/posts/%Y/%m/%d',
+    image = models.ImageField(('post_picture'),
+                              upload_to='frontend/public/post_pictures/%Y/%m',
                               blank=True)
 
     def __str__(self):
