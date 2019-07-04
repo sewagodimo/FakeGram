@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'corsheaders',
-    'rest_framework',
 
     'instagram',
+    'rest_framework',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -113,6 +114,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = "instagram.User"
+
+# Rest framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+}
 
 CORS_ORIGIN_REGEX_WHITELIST = (
     'localhost:3001',
