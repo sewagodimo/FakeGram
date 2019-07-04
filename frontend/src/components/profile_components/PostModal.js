@@ -1,5 +1,6 @@
 import React from 'react';
-import { Media,  Modal, ModalHeader, ListGroupItem, ListGroup} from 'reactstrap';
+import {NavLink} from 'react-router-dom';
+import { Media,  Modal, ModalHeader, ListGroup} from 'reactstrap';
 import Avatar from 'react-avatar';
 import '../../styles/profile.css'
 
@@ -18,15 +19,18 @@ class PostModal  extends React.Component{
 }
 
 getUserUrl = (username) =>{
-  return "users/"+username;
+  return "/users/"+username;
 }
 getUrl = (type,image) => {
-  return image.substring(image.indexOf(type))
+  if (image){
+    return image.substring(image.indexOf(type));
+    }
+    return "";
 }
   
   render() {
-    console.log(this.props)
     return (
+      <div>
       <Modal isOpen={this.state.modal} toggle={this.toggle} style={{width: '60%'}}>
       <div className="modal_flex">
         <div style={{flexGrow:'6'}}>
@@ -35,20 +39,20 @@ getUrl = (type,image) => {
       <div style={{flexGrow:'4'}}>
       <ListGroup>
       <ModalHeader toggle={this.toggle} style={{padding:'2px'}}>
-                <p style={{marginBottom:'5px',marginTop:'0.7em', }}  
-                onClick={() => this.getUserClick(this.props.user.username)} >
+                <div style={{marginBottom:'5px',marginTop:'0.7em', }}>
                     <Avatar name="Insta" size="45" round={true}  
                     src={this.getUrl("/users/",this.props.user.profile_picture)}/>
-                    <b> 
-                    {'  '} 
-                    <a href={this.getUserUrl(this.props.user.username)}>{this.props.user.username}</a></b>
-      </p>
+                    <b>{'  '} 
+                    <NavLink to={this.getUserUrl(this.props.user.username)}>{this.props.user.username}</NavLink>
+                    </b>
+      </div>
       </ModalHeader>
       {this.props.caption}
       </ListGroup>
          </div>
           </div>
       </Modal>
+      </div>
     )
   }
 }

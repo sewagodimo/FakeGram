@@ -18,7 +18,7 @@ class ListProfilePosts extends React.Component{
     }
     renderModal = (post) => {
         let modal;
-        if(this.state.modalShow[0]== true && this.state.modalShow[1]==post.id){
+        if(this.state.modalShow[0] === true && this.state.modalShow[1] === post.id){
             modal = <PostModal
                 show={this.state.modalShow}
                 image={this.getUrl("/posts/",post.image)}
@@ -35,7 +35,6 @@ class ListProfilePosts extends React.Component{
     }
 	
 	render(){ 
-        let modalClose = () => this.setState({ modalShow: false });
 	return this.props.posts.map((post) => ( 
 
 		<div className="cell" key={post.id}>

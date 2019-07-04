@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import {Navbar, NavbarBrand, Nav, NavItem} from 'reactstrap';
 import '../styles/icons.css';
 
@@ -24,6 +25,9 @@ class TopNavBar extends React.Component {
     }
     }
 
+    getUserUrl = (username) =>{
+        return "/users/"+username;
+      }
 render(){
     return( 
     <div >
@@ -32,11 +36,11 @@ render(){
       <i className="fa fa-camera" style={{fontSize:'38px', color:'gold'}}>FakeGram</i></NavbarBrand>
         <Nav className="ml-auto" navbar style={{flexGrow: '1'}}>
             <NavItem >
-            <a href="/users/" className= "Profile" style={this.navItemStyling()}></a> {'  '}
+            <a href="/users/megan" className= "Profile" style={this.navItemStyling()}>{'  '}</a> 
 
-            <a href="/notifications/" className= "Like" style={this.navItemStyling()}></a>  {'  '}
+            <a href="/notifications/" className= "Like" style={this.navItemStyling()}>{'  '}</a>  
 
-            <a href="/upload/" className= "Upload" style={this.navItemStyling()}></a>
+            <a href="/upload/" className= "Upload" style={this.navItemStyling()}>{'  '}</a>
           </NavItem>
           </Nav>
           </Navbar>

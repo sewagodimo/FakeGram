@@ -6,7 +6,7 @@ from instagram import models
 @admin.register(models.User)
 class UserAdmin(DjangoUserAdmin):
     """
-    Extend the base Django UserAdmin with support for some Buza fields.
+    Extend the base Django UserAdmin with support for some Fakegram feilds.
     """
 
     date_hierarchy = 'date_joined'
@@ -17,7 +17,7 @@ class UserAdmin(DjangoUserAdmin):
 @admin.register(models.Post)
 class PostsAdmin(admin.ModelAdmin):
     """
-    Extend the base Django UserAdmin with support for some Buza fields.
+    Extend the base Model UserAdmin with support for some Fakegram fields.
     """
 
     date_hierarchy = 'created_at'

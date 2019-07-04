@@ -12,13 +12,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      posts: [],
-      user: {},
-      current_post_id:0,
-      is_uploading:true,
       is_fetching:true,
-      is_loggedin:false,
-      is_userview:false,
 
     }
 

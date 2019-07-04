@@ -13,7 +13,10 @@ class PostItem extends Component {
     }
 
     getUrl = (type,image) => {
+        if (image){
         return image.substring(image.indexOf(type))
+        }
+        return ""
     }
     getUserUrl = (username) =>{
         return "users/"+username;
@@ -36,9 +39,7 @@ class PostItem extends Component {
                 onClick={() => this.getUserClick(user.username)} >
                     <Avatar name="Insta" size="45" round={true}  
                     src={this.getUrl("/users/",user.profile_picture)}/>
-                    <b> 
-                    {'  '} 
-                    <a href={this.getUserUrl(user.username)}>{user.username}</a></b>
+                    {'  '}<b> <a href={this.getUserUrl(user.username)}>{user.username}</a></b>
                 </a>
                 <Col style={{width:'100%', padding:'0px'}}>
                 <Media src={this.getUrl("/posts/",image)} style={{width:'100%',padding:"0px"}}/>
