@@ -1,5 +1,5 @@
 const instagram_url = 'http://127.0.0.1:8000/api/v1/instagram'  //url for all the posts
-const post_url = 'http://127.0.0.1:8000/api/v1/instagram/post/' // url for a particular post
+const post_url = 'http://127.0.0.1:8000/api/v1/instagram/posts/' // url for a particular post
 
 export const fetchPosts = async() =>{
 	return fetch(instagram_url, {})
@@ -11,7 +11,7 @@ export const fetchPosts = async() =>{
 
 export const fetchUsername = async(name) =>{
 	// get the userid of that user
-		return fetch(instagram_url+"/"+name, {})
+		return fetch(instagram_url+"/users/"+name, {})
 			.then(res=>res.json())
 			.then(data =>{
 				return data;
