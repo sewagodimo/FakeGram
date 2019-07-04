@@ -167,3 +167,7 @@ $ npm install react-avatar --save
 # besides React, react-avatar also has prop-types as peer dependency,
 # make sure to install it into your project
 $ npm install prop-types --save
+
+# DRF Auth service
+
+http://v1k45.com/blog/modern-django-part-4-adding-authentication-to-react-spa-using-drf/
