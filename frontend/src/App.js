@@ -22,18 +22,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    //check if a user is logged in
-        if (this.state.is_logged_in) {
-          fetch('http://localhost:8000/api/v1/instagram/current_user/', {
-            headers: {
-              Authorization: `Token ${localStorage.getItem('token')}`
-            }
-          })
-            .then(res => res.json())
-            .then(json => {
-              this.setState({is_logged_in:true, username: json.username });
-            });
-  }
+
 }
 refresh_user = () => {
     //check if a user is logged in
@@ -66,16 +55,28 @@ handle_login = (e, data) => {
   })
     .then(res => res.json())
     .then(json => {
+      //check that the user is actually authenticate
+      if (json.token){
       localStorage.setItem('token', json.token);
       this.setState({
         is_logged_in: true,
         displayed_form: '',
         username: json.user.username
       });
+    }
     });
 };
+handle_logout = () => {
+  localStorage.removeItem('token');
+  this.setState({ logged_in: false, username: '' });
+};
+
+
 getHomePage = () =>{
   if (this.state.is_logged_in){
+    if(!this.state.username){
+      this.refresh_user()
+    }
     return  <Route exact path="/" component={Posts} />
   }
   return  <Route exact path="/" 
@@ -84,11 +85,6 @@ getHomePage = () =>{
   />
 
 };
-handle_logout = () => {
-  localStorage.removeItem('token');
-  this.setState({ logged_in: false, username: '' });
-};
-
   render() {
     return (
       <React.Fragment >
