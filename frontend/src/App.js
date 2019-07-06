@@ -5,31 +5,99 @@ import Posts from './components/Posts';
 import TopNavBar from './components/TopNavBar';
 import UserProfile from './components/profile_components/UserProfile';
 import PostUpload from './components/profile_components/PostUpload';
+import Home from './components/registration_components/Home';
 import UserNotifications from './components/profile_components/UserNotifications';
 
 
 class App extends Component {
+
+
   constructor(props){
     super(props);
     this.state = {
-      is_fetching:true,
+      is_logged_in:localStorage.getItem('token') ? true : false,
+      username: '',
 
     }
-
   }
 
   componentDidMount(){
     //check if a user is logged in
+        if (this.state.is_logged_in) {
+          fetch('http://localhost:8000/api/v1/instagram/current_user/', {
+            headers: {
+              Authorization: `Token ${localStorage.getItem('token')}`
+            }
+          })
+            .then(res => res.json())
+            .then(json => {
+              this.setState({is_logged_in:true, username: json.username });
+            });
   }
+}
+refresh_user = () => {
+    //check if a user is logged in
+    console.log("refreshing.....")
+    if (this.state.is_logged_in) {
+      fetch('http://localhost:8000/api/v1/instagram/current_user/', {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`
+        }
+      })
+        .then(res => res.json())
+        .then(json => {
+          if (json.detail){
+            this.setState({is_logged_in:false, username: ""});
+          }
+          else{
+          this.setState({is_logged_in:true, username: json.username });
+          }
+        });
+}
+}
+handle_login = (e, data) => {
+  e.preventDefault();
+  fetch('http://localhost:8000/api/v1/instagram/auth/login/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(res => res.json())
+    .then(json => {
+      localStorage.setItem('token', json.token);
+      this.setState({
+        is_logged_in: true,
+        displayed_form: '',
+        username: json.user.username
+      });
+    });
+};
+getHomePage = () =>{
+  if (this.state.is_logged_in){
+    return  <Route exact path="/" component={Posts} />
+  }
+  return  <Route exact path="/" 
+  render={(props) =>
+  <Home {...props} handle_login={this.handle_login}/>}
+  />
+
+};
+handle_logout = () => {
+  localStorage.removeItem('token');
+  this.setState({ logged_in: false, username: '' });
+};
 
   render() {
     return (
       <React.Fragment >
-      <TopNavBar/>
+       <TopNavBar is_logged_in = {this.state.is_logged_in} username={this.state.username} 
+       refresh_user={this.refresh_user}/>
 
       <BrowserRouter style={{backgroundColor:'#f8f9fa', paddingTop: '10%'}}>
                 <Switch>
-                    <Route exact path="/" component={Posts} />
+                {this.getHomePage()}
                     <Route  path="/users/:username" component={UserProfile} />
                     <Route  exact path="/notifications" component={UserNotifications} />
                     <Route  exact path="/upload" component={PostUpload} />
