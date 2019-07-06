@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchUsername, fetchPost} from '../../api';
+import {fetchUsername, fetchPost, getCurrentUser} from '../../api';
 import Avatar from 'react-avatar';
 import {Container, Row, Col} from 'reactstrap';
 import ListProfilePosts from './ListProfilePosts';
@@ -10,6 +10,7 @@ class UserProfile extends Component {
     constructor(props){
         super(props);
         this.state = {
+            user_exists: true,
             user_profile:[],
             user_posts:[],
             post_row_count: 0,
@@ -27,7 +28,6 @@ class UserProfile extends Component {
       }
       
       getUrl = (type,image) => {
-          console.log(image)
           if (image){
         return this.state.user_profile.profile_picture.substring(image.indexOf(type))
           }
@@ -38,8 +38,19 @@ class UserProfile extends Component {
         return await fetchPost(post_id);
         
     }
+    getCurrentUser = async username=>{
+        return await getCurrentUser();
+        
+    }
     async getUserProfile(username) {
+        if (!username){
+            return ""
+        }
             let data = await fetchUsername(username);
+            if (data.detail){
+                    this.setState({user_exists:false})
+                    return ""
+            }
             this.setState({
                 user_profile: data, 
                 is_fetching_profile: false,
@@ -66,7 +77,9 @@ class UserProfile extends Component {
         const {username, profile_picture, first_name, last_name, bio} = this.state.user_profile;
         return (
             <div>
+           {this.state.user_exists ?     
         <Container style={{paddingTop: '10%', zIndex:'-1'}}>
+        
             <Row>
             <Col  md={{ size: 7, offset: 3 }} sm="12" >
              <a>
@@ -77,16 +90,22 @@ class UserProfile extends Component {
             <p>{bio}</p>
             </Col>
             </Row>
-
+            { this.state.user_posts.length>0  ?
             <Col  md={{ size: 10, offset: 1 }} className="profile_grid" style={{ paddingBottom:'15px'}}>
                   <ListProfilePosts posts={this.state.user_posts} 
                   user = {this.state.user_profile}
 
                   handlePostClick={(id) => this.handlePostClick(id)} 
                    />
-            </Col>
+            </Col> :
+             <Col  md={{ size: 10, offset: 1 }} className="profile_grid">
+             <h3>{"No posts yet"}</h3>
+             </Col>
+            }
             </Container>
-        
+            :<Container style={{paddingTop: '10%', zIndex:'-1'}}>
+            <h3>{"User does not exist"}</h3></Container> 
+            }
             </div>
         )
     }
