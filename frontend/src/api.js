@@ -27,19 +27,33 @@ export const fetchPost = async(id) => {
 	});
 }
 
-export const addPost = (post) =>{
-	 fetch(post_url, {
-		method: 'POST',
-		header:{
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		},
-		body:JSON.stringify(post)
+export const newPost = (post) =>{
+	fetch(post_url+"/create/", {
+	   method: 'POST',
+	   header:{
+		   'Accept': 'application/json',
+		   'Content-Type': 'application/json',
+		   'Authorization': `Token ${localStorage.getItem('token')}`
+	   },
+	   body:JSON.stringify(post)
 })
-	 .then (res =>res.json())
-	 .then(data =>{
-	 	console.log(data);
-	 })
-	 return post
+	.then (res =>res.json())
+	.then(data =>{
+	})
+	return post
 
 }
+
+export const getCurrentUser = () => {
+	fetch(instagram_url+'/current_user/', {
+		header:{
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Authorization': `Token ${localStorage.getItem('token')}`
+		},
+ })
+	 .then (res =>res.json())
+	 .then(data =>{
+		 return data;
+	 })
+ }
