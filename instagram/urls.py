@@ -19,6 +19,7 @@ urlpatterns = [
 	path('auth/register/', views.UserCreateView.as_view()),
 	path('auth/login/', views.LoginAPIView.as_view()),
 	path('auth/', include('knox.urls')),
+	path('current_user/', views.current_user),
 ]
 
 """
