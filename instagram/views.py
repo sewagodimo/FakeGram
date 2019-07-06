@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
 from knox.models import AuthToken
-
 from . import models, serializers
 from rest_framework.response import Response
 
@@ -68,3 +68,12 @@ class LoginAPIView(generics.GenericAPIView):
             'user': serializers.UserSerializer(user, context=self.get_serializer_context()).data,
             'token': AuthToken.objects.create(user)[1]
         })
+
+@api_view(['GET'])
+def current_user(request):
+    """
+    Determine the current user by their token, and return their data
+    """
+    
+    serializer = serializers.UserSerializer(request.user)
+    return Response(serializer.data)
