@@ -16,7 +16,7 @@ class PostDetailView(generics.RetrieveAPIView):
 	serializer_class = serializers.PostSerializer
 
 class PostCreateView(generics.ListCreateAPIView):
-	permission_classes = (IsAuthenticated)
+	permission_classes = (IsAuthenticated,)
 	queryset = models.Post.objects.all().order_by('-created_at', '-updated_at')
 	serializer_class = serializers.PostSerializer
   
