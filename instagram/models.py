@@ -27,6 +27,7 @@ class Post(models.Model):
     image = models.ImageField(('post_picture'),
                               upload_to='frontend/public/post_pictures/%Y/%m',
                               blank=True)
+    image_filter = models.CharField(max_length=100, default="")
 
     def __str__(self):
         return self.caption
