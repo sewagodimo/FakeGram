@@ -26,7 +26,8 @@ class PostUpload extends React.Component{
 			const post = {
 				'image': this.state.image,
 				'caption': this.state.caption,
-				'user_id': this.props.user_id
+				'user_id': this.props.user_id,
+				'image_filter': this.state.image_filter,
 			};
 			this.make_post(post);
 			this.props.history.push('/')
