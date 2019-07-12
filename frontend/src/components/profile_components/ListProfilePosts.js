@@ -14,7 +14,12 @@ class ListProfilePosts extends React.Component{
                 }
 
     getUrl = (type,image) => {
-        return image.substring(image.indexOf(type))
+        if (image){
+        return image.substring(image.indexOf(type));
+        }
+        else{
+            return "";
+        }
     }
     renderModal = (post) => {
         let modal;
@@ -43,8 +48,7 @@ class ListProfilePosts extends React.Component{
             style={{width:'100%', height:'150px'}}/>
 
             {this.renderModal(post)}
-        </div>
-			
+        </div>  
 		))
 	
 }
