@@ -47,6 +47,9 @@ class UserProfile extends Component {
         this.props.handle_logout();
         this.props.history.push('/');
     }
+    profile_edit = e => {
+        this.props.history.push('/userprofile/edit');
+    }
     async getUserProfile(username) {
         if (!username){
             return ""
@@ -97,7 +100,7 @@ class UserProfile extends Component {
             <h3> {first_name} {' '} {last_name}</h3>  
             { this.props.username === username ?
             <div>
-            <button class="profile_button green">Edit Profile</button>
+            <button class="profile_button green" onClick={this.profile_edit}>Edit Profile</button>
             <button class="profile_button red" onClick={this.handle_logout}>Logout</button>
             </div>
             : <div></div>

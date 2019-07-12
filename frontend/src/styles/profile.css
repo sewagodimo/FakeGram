@@ -92,3 +92,11 @@ button:hover {
   background-color: #f44336;
   color: white;
 }
+
+
+
+.uploadProfile input[type="file"]{
+  top:0; left:0;
+  opacity:20px; 
+  font-size: 23px;
+}

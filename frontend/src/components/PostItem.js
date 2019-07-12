@@ -25,7 +25,6 @@ class PostItem extends Component {
     async getUserClick(username) {
         console.log("user is ", username)
         let data = await fetchUsername(username);
-        console.log("The user is ", data);
         this.setState({user_profile: data})
         return data;
       }

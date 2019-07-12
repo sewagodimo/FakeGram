@@ -7,7 +7,7 @@ import UserProfile from './components/profile_components/UserProfile';
 import PostUpload from './components/profile_components/PostUpload';
 import Home from './components/registration_components/Home';
 import UserNotifications from './components/profile_components/UserNotifications';
-
+import ProfileEdit from './components/profile_components/ProfileEdit';
 
 class App extends Component {
   constructor(props){
@@ -120,6 +120,24 @@ getUploadRoute = () =>{
   <Home {...props} handle_login={this.handle_login}/>}
   />
   };
+  getEditProfileRoute = () =>{
+    if (this.state.is_logged_in){
+      if(!this.state.username){
+        this.refresh_user()
+      } 
+      if (this.state.username){
+      return  <Route  exact path="/userprofile/edit" 
+      render={(props) =>
+      <ProfileEdit {...props} username={this.state.username} 
+      user_id={this.state.user_id}/> }
+       />
+      }
+}
+return  <Route exact path="/upload" 
+  render={(props) =>
+  <Home {...props} handle_login={this.handle_login}/>}
+  />
+  }
 
   render() {
     return (
@@ -133,6 +151,7 @@ getUploadRoute = () =>{
                     
                     {this.getNotificationsRoute()}
                     {this.getUploadRoute()}
+                    {this.getEditProfileRoute()}
                     <Route exact path="/users/:username" render={(props) =>
                             <UserProfile {...props} handle_logout={this.handle_logout} username={this.state.username}/>}
                     />
