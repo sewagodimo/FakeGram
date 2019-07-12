@@ -21,9 +21,9 @@ input[type=text], input[type=password] {
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid lightgrey;
+  border: 0px;
+  border-bottom: 1px solid grey;
   box-sizing: border-box;
-  border-radius: 15px;
 }
 
 /* Set a style for all buttons */

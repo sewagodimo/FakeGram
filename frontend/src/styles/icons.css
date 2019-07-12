@@ -29,3 +29,14 @@
     background-repeat: no-repeat;
     color: gold;
   }
+  .uploadImage{
+    background: white;
+      background-image: url(./icons/camera.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius:8px;
+      border:gold solid 1px;
+      width:250px; 
+      height: 250px;
+      
+    }
