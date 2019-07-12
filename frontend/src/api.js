@@ -44,6 +44,7 @@ export const getCurrentUser = () => {
 	data.append("caption", post.caption);
 	data.append("user", post.user_id);
 	data.append("image", post.image);
+	data.append("image_filter", post.image_filter);
 	fetch(post_url+"create/", { 
 	method: 'POST',
     headers: {
