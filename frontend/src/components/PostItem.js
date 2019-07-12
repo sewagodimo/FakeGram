@@ -31,7 +31,7 @@ class PostItem extends Component {
       }
     
     render() {
-        const {caption, image, user } = this.props.post;
+        const {caption, image, user, image_filter } = this.props.post;
         return (
             <div style={{paddingBottom:'9%'}}>
             <ListGroupItem  style={this.props.getPostPadding}> 
@@ -42,7 +42,9 @@ class PostItem extends Component {
                     {'  '}<b> <a href={this.getUserUrl(user.username)}>{user.username}</a></b>
                 </a>
                 <Col style={{width:'100%', padding:'0px'}}>
-                <Media src={this.getUrl("/post_pictures/",image)} style={{width:'100%',padding:"0px"}}/>
+                <Media src={this.getUrl("/post_pictures/",image)} 
+                style={{width:'100%',padding:"0px"}}
+                className={image_filter}/>
                 </Col>
         <p> <b><a href={this.getUserUrl(user.username)}>{user.username}</a></b> {' '} {caption}</p>
                 

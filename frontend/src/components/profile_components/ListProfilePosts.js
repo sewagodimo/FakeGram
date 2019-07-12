@@ -30,6 +30,7 @@ class ListProfilePosts extends React.Component{
                 id={post.id}
                 user={post.user}
                 caption={post.caption}
+                image_filter={post.image_filter}
               />
 
         }
@@ -43,7 +44,7 @@ class ListProfilePosts extends React.Component{
 	return this.props.posts.map((post) => ( 
 
 		<div className="cell" key={post.id}>
-            <Media src={this.getUrl("/post_pictures/",post.image)} 
+            <Media src={this.getUrl("/post_pictures/",post.image)}  className={post.image_filter}
             onClick={() => this.setState({ modalShow: [true, post.id]})}
             style={{width:'100%', height:'150px'}}/>
 
