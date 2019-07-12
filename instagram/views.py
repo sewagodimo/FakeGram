@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 
 class PostListView(generics.ListAPIView):
-	queryset = models.Post.objects.all()
+	queryset = models.Post.objects.all().order_by('-created_at', '-updated_at')
 	serializer_class = serializers.PostSerializer
 
 
@@ -17,11 +17,12 @@ class PostDetailView(generics.RetrieveAPIView):
 
 class PostCreateView(generics.ListCreateAPIView):
 	permission_classes = (IsAuthenticated)
-	queryset = models.Post.objects.all()
+	queryset = models.Post.objects.all().order_by('-created_at', '-updated_at')
 	serializer_class = serializers.PostSerializer
+  
 
 class PostUpdateView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = (IsAuthenticated,)
     queryset = models.Post.objects.all()
     serializer_class = serializers.PostSerializer
 
@@ -37,7 +38,7 @@ class UserDetailView(generics.RetrieveAPIView):
 
 
 class UserUpdateView(generics.RetrieveUpdateDestroyAPIView):
-	permission_classes = (IsAuthenticated)
+	permission_classes = (IsAuthenticated,)
 	queryset = models.User.objects.all()
 	lookup_field = 'username'
 	serializer_class = serializers.UserSerializer 
@@ -74,6 +75,6 @@ def current_user(request):
     """
     Determine the current user by their token, and return their data
     """
-    
+    permission_classes = (IsAuthenticated,)
     serializer = serializers.UserSerializer(request.user)
     return Response(serializer.data)
