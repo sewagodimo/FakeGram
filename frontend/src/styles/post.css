@@ -1,0 +1,62 @@
+.uploadImage input[type="file"]{
+    top:0; left:0;
+    opacity:0; 
+    height: 250px;
+    width:250px;
+    font-size: 250px; 
+
+}
+.heading { grid-area: heading; }
+.upload { grid-area: upload; height: 250px;}
+.message{ grid-area: message;  width: 40%; }
+.filters { grid-area: filters;}
+.submit { grid-area: submit; }
+
+.filter{
+    width: 75px;
+    height: 75px;
+    padding: 10px;
+    cursor: cell;
+}
+.bng-filter{
+    filter: grayscale(100%);
+}
+.blur-filter{
+    filter: blur(2px);
+}
+.bright-filter{
+    filter: brightness(100%);
+}
+.saturate-filter {
+    filter: saturate(5);
+}
+.sepia-filter{
+    filter:sepia(70%);
+}
+
+.upload-container {
+ display: grid;
+grid-template-areas:
+'heading heading heading heading heading'
+'upload upload uplaod message message'
+'filters filters filters filters filters '
+'submit submit submit submit submit';
+grid-gap: 5px;
+
+padding: 10px;
+}
+
+.grid-container > div {
+    text-align: center;
+    padding: 5px 0;
+    font-size: 30px;
+  }
+
+.caption-text {
+    height:"120px";
+    width: "250px";
+  }
+
+  .uploadIcon {
+    background: transparent;
+  }
