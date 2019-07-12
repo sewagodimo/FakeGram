@@ -69,8 +69,8 @@ class UserProfile extends Component {
             }
             else{ 
             //get all the posts related to the user's get_posts
-            var posts =  await Promise.all(post_ids.map(item => this.getProfilePosts(item)))
-            this.setState({user_posts: posts});
+            var posts =  await Promise.all(post_ids.map(item => this.getProfilePosts(item)));
+            this.setState({user_posts: posts.reverse()});
         }
     }
     render(){
