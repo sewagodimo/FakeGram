@@ -25,10 +25,10 @@
     filter: blur(2px);
 }
 .bright-filter{
-    filter: brightness(100%);
+    filter: brightness(130%);
 }
 .saturate-filter {
-    filter: saturate(5);
+    filter: saturate(2);
 }
 .sepia-filter{
     filter:sepia(70%);
