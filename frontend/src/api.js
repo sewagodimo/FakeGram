@@ -27,33 +27,33 @@ export const fetchPost = async(id) => {
 	});
 }
 
-export const newPost = (post) =>{
-	fetch(post_url+"/create/", {
-	   method: 'POST',
-	   header:{
-		   'Accept': 'application/json',
-		   'Content-Type': 'application/json',
-		   'Authorization': `Token ${localStorage.getItem('token')}`
-	   },
-	   body:JSON.stringify(post)
-})
-	.then (res =>res.json())
-	.then(data =>{
-	})
-	return post
-
-}
-
 export const getCurrentUser = () => {
 	fetch(instagram_url+'/current_user/', {
-		header:{
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-			'Authorization': `Token ${localStorage.getItem('token')}`
-		},
- })
-	 .then (res =>res.json())
-	 .then(data =>{
-		 return data;
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`
+        }
+      })
+        .then(res => res.json())
+        .then(json => {
+		 return json;
 	 })
  }
+
+ export const uploadPost = (post) =>{
+	const data = new FormData();
+	data.append("caption", post.caption);
+	data.append("user", post.user_id);
+	data.append("image", post.image);
+	fetch(post_url+"create/", { 
+	method: 'POST',
+    headers: {
+	    Authorization: `Token ${localStorage.getItem('token')}`,
+    },
+    body:data
+})
+	.then (res =>res.json())
+	.then(json =>{
+		return json
+	})
+
+}

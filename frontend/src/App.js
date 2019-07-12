@@ -10,24 +10,20 @@ import UserNotifications from './components/profile_components/UserNotifications
 
 
 class App extends Component {
-
-
   constructor(props){
     super(props);
     this.state = {
       is_logged_in:localStorage.getItem('token') ? true : false,
       username: '',
+      user_id:null,
 
-    }
+    };
   }
 
-  componentDidMount(){
-
-}
 refresh_user = () => {
     //check if a user is logged in
-    console.log("refreshing.....")
-    if (this.state.is_logged_in) {
+    
+    if (this.state.is_logged_in && !this.state.username) {
       fetch('http://localhost:8000/api/v1/instagram/current_user/', {
         headers: {
           Authorization: `Token ${localStorage.getItem('token')}`
@@ -36,14 +32,16 @@ refresh_user = () => {
         .then(res => res.json())
         .then(json => {
           if (json.detail){
-            this.setState({is_logged_in:false, username: ""});
+            this.setState({is_logged_in:false, username: "", user_id:null});
           }
           else{
-          this.setState({is_logged_in:true, username: json.username });
+          this.setState({is_logged_in:true, username: json.username, user_id:json.id });
+          console.log("refreshing user info.....", this.state.username);
           }
         });
 }
 }
+
 handle_login = (e, data) => {
   e.preventDefault();
   fetch('http://localhost:8000/api/v1/instagram/auth/login/', {
@@ -61,7 +59,8 @@ handle_login = (e, data) => {
       this.setState({
         is_logged_in: true,
         displayed_form: '',
-        username: json.user.username
+        username: json.user.username,
+        user_id: json.user.id,
       });
     }
     });
@@ -72,7 +71,7 @@ handle_logout = () => {
 };
 
 
-getHomePage = () =>{
+getHomeRoute = () =>{
   if (this.state.is_logged_in){
     if(!this.state.username){
       this.refresh_user()
@@ -85,6 +84,43 @@ getHomePage = () =>{
   />
 
 };
+
+getNotificationsRoute = () =>{
+  if (this.state.is_logged_in){
+    if(!this.state.username){
+      this.refresh_user()
+    }
+    
+    return  <Route  exact path="/notifications" 
+                    render={(props) =>
+                    <UserNotifications {...props} username={this.state.username}/> }
+                     />
+  }
+  return  <Route exact path="/noticiations" 
+  render={(props) =>
+  <Home {...props} handle_login={this.handle_login}/>}
+  />
+
+};
+
+getUploadRoute = () =>{
+  if (this.state.is_logged_in){
+    if(!this.state.username){
+      this.refresh_user()
+    }                                                                                             
+    return  <Route  exact path="/upload" 
+                    render={(props) =>
+                    <PostUpload {...props} username={this.state.username} 
+                    is_logged_in={this.state.is_logged_in}
+                    user_id={this.state.user_id}/> }
+                     />
+  }
+  return  <Route exact path="/upload" 
+  render={(props) =>
+  <Home {...props} handle_login={this.handle_login}/>}
+  />
+  };
+
   render() {
     return (
       <React.Fragment >
@@ -93,10 +129,11 @@ getHomePage = () =>{
 
       <BrowserRouter style={{backgroundColor:'#f8f9fa', paddingTop: '10%'}}>
                 <Switch>
-                {this.getHomePage()}
+                    {this.getHomeRoute()}
+                    
+                    {this.getNotificationsRoute()}
+                    {this.getUploadRoute()}
                     <Route  path="/users/:username" component={UserProfile} />
-                    <Route  exact path="/notifications" component={UserNotifications} />
-                    <Route  exact path="/upload" component={PostUpload} />
                 </Switch>
             </BrowserRouter>
       </React.Fragment>
