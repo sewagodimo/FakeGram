@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, Switch, BrowserRouter} from 'react-router-dom';
+import {Route, Switch, BrowserRouter, withRouter } from 'react-router-dom';
 
 import Posts from './components/Posts';
 import TopNavBar from './components/TopNavBar';
@@ -67,7 +67,7 @@ handle_login = (e, data) => {
 };
 handle_logout = () => {
   localStorage.removeItem('token');
-  this.setState({ logged_in: false, username: '' });
+  this.setState({ logged_in: false, username: '', user_id:null });
 };
 
 
@@ -133,7 +133,9 @@ getUploadRoute = () =>{
                     
                     {this.getNotificationsRoute()}
                     {this.getUploadRoute()}
-                    <Route  path="/users/:username" component={UserProfile} />
+                    <Route exact path="/users/:username" render={(props) =>
+                            <UserProfile {...props} handle_logout={this.handle_logout} username={this.state.username}/>}
+                    />
                 </Switch>
             </BrowserRouter>
       </React.Fragment>

@@ -13,7 +13,7 @@ class UserProfile extends Component {
             user_exists: true,
             user_profile:[],
             user_posts:[],
-            post_row_count: 0,
+            is_user: false,
             is_fetching_profile:true,
         };
         this.getProfilePosts = this.getProfilePosts.bind(this);
@@ -41,6 +41,11 @@ class UserProfile extends Component {
     getCurrentUser = async username=>{
         return await getCurrentUser();
         
+    }
+
+    handle_logout = e => {
+        this.props.handle_logout();
+        this.props.history.push('/');
     }
     async getUserProfile(username) {
         if (!username){
@@ -82,12 +87,25 @@ class UserProfile extends Component {
         
             <Row>
             <Col  md={{ size: 7, offset: 3 }} sm="12" >
+            <div className="profile_flexbox">
+             <div style={{width:'40%'}}>
              <a>
-             <Avatar name="Insta" size="45" round={true}  src={this.getUrl("/profile_pictures/", profile_picture)}/>
+             <Avatar name="Insta" size="130" round={true}  src={this.getUrl("/profile_pictures/", profile_picture)}/>
             </a>
-            <h3> {first_name} {' '} {last_name}</h3>
+            </div>
+            <div>
+            <h3> {first_name} {' '} {last_name}</h3>  
+            { this.props.username === username ?
+            <div>
+            <button class="profile_button green">Edit Profile</button>
+            <button class="profile_button red" onClick={this.handle_logout}>Logout</button>
+            </div>
+            : <div></div>
+            }
             <h6><b>@{username}</b></h6>
             <p>{bio}</p>
+            </div>
+            </div>
             </Col>
             </Row>
             { this.state.user_posts.length>0  ?
